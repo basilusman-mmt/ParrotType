@@ -1,0 +1,127 @@
+{% extends "typing_app/base.html" %}
+
+{% block title %}Typing Test | ParrotType{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+    <div>
+        <p class="eyebrow">WELCOME TO PARROTTYPE</p>
+        <h1>Typing Test</h1>
+        <p class="muted">Improve your typing speed and accuracy.</p>
+    </div>
+</div>
+
+<section class="test-box">
+
+    <div class="settings">
+
+        <div>
+            <p class="setting-label">MODE</p>
+            <div class="choices">
+                <button class="choice active" data-mode="time">Time</button>
+                <button class="choice" data-mode="words">Words</button>
+                <button class="choice" data-mode="custom">Custom</button>
+            </div>
+        </div>
+
+        <div id="time-options">
+            <p class="setting-label">TIME</p>
+            <div class="choices">
+                <button class="choice" data-value="15">15</button>
+                <button class="choice active" data-value="30">30</button>
+                <button class="choice" data-value="45">45</button>
+                <button class="choice" data-value="60">60</button>
+            </div>
+        </div>
+
+        <div id="word-options" class="hidden">
+            <p class="setting-label">WORDS</p>
+            <div class="choices">
+                <button class="choice" data-value="10">10</button>
+                <button class="choice" data-value="15">15</button>
+                <button class="choice active" data-value="30">30</button>
+                <button class="choice" data-value="45">45</button>
+            </div>
+        </div>
+
+<div>
+    <p class="setting-label">COMPLEXITY</p>
+
+    <div class="choices">
+        <button class="choice" data-complexity="simple">
+            Simple
+        </button>
+
+        <button class="choice active" data-complexity="medium">
+            Medium
+        </button>
+
+        <button class="choice" data-complexity="hard">
+            Hard
+        </button>
+
+        <button class="choice" data-complexity="long">
+            30+ Letters
+        </button>
+    </div>
+</div>
+
+    <div id="custom-options" class="custom-options hidden">
+        <label>
+            Seconds
+            <input type="number" id="custom-time" value="30" min="5" max="300">
+        </label>
+
+        <label>
+            Words
+            <input type="number" id="custom-words" value="30" min="5" max="500">
+        </label>
+
+        <button class="primary-button" id="apply-custom">Apply</button>
+    </div>
+
+    <div class="test-info">
+        <span id="timer">30</span>
+        <span id="test-status">Press any key to start</span>
+    </div>
+
+    <div class="typing-area" id="typing-area">
+        <div class="words" id="words"></div>
+        <input id="typing-input" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="test-footer">
+        <span>VSCode Theme</span>
+        <span>ParrotType</span>
+    </div>
+
+    <button class="restart-button" id="restart">↻ Restart test</button>
+
+</section>
+
+<section class="result-panel hidden" id="result-panel">
+    <p class="eyebrow">TEST COMPLETED</p>
+    <h2>Your Results</h2>
+
+    <div class="result-grid">
+        <div>
+            <strong id="result-wpm">0</strong>
+            <span>WPM</span>
+        </div>
+
+        <div>
+            <strong id="result-accuracy">0%</strong>
+            <span>ACCURACY</span>
+        </div>
+
+        <div>
+            <strong id="result-errors">0</strong>
+            <span>ERRORS</span>
+        </div>
+    </div>
+
+    <button class="primary-button" id="try-again">Try Again</button>
+</section>
+
+{% endblock %}

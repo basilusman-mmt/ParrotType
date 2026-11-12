@@ -1,0 +1,22 @@
+<aside class="sidebar" id="sidebar">
+    <a href="{% url 'home' %}" class="brand">
+        <span class="brand-icon">P</span>
+        ParrotType
+    </a>
+
+    <p class="side-label">MENU</p>
+
+    <a href="{% url 'home' %}" class="side-link">⌨ Typing Test</a>
+    <a href="{% url 'profile' %}" class="side-link">◉ Profile</a>
+    <a href="{% url 'stats' %}" class="side-link">▥ Statistics</a>
+
+    <div class="side-bottom">
+        {% if user.is_authenticated %}
+            <div class="user-mini">{{ user.username }}</div>
+            <a href="{% url 'logout' %}" class="side-link">↪ Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="side-link">↪ Login</a>
+            <a href="{% url 'register' %}" class="side-link">＋ Register</a>
+        {% endif %}
+    </div>
+</aside>

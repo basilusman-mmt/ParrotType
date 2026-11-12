@@ -1,0 +1,10 @@
+{% extends "typing_app/base.html" %}
+{% block title %}Create account · ParrotType{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="eyebrow">JOIN PARROTTYPE</div><h1>Create account.</h1><p class="subheading">Keep your progress and personal bests.</p>
+<form method="post" class="auth-card">{% csrf_token %}
+{% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.help_text %}<div class="help-text">{{ field.help_text|safe }}</div>{% endif %}{% if field.errors %}<div class="field-error">{{ field.errors }}</div>{% endif %}{% endfor %}
+<button class="primary-button" type="submit">Create account</button>
+<p class="auth-switch">Already registered? <a href="{% url 'login' %}">Log in</a></p>
+</form></div>
+{% endblock %}

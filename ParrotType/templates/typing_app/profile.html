@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Profile | ParrotType{% endblock %}
+
+{% block content %}
+
+<p class="eyebrow">YOUR ACCOUNT</p>
+<h1>{{ user.username }}</h1>
+<p class="muted">{{ user.email }}</p>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span>TESTS COMPLETED</span>
+        <strong>{{ total_tests }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>BEST WPM</span>
+        <strong>{{ best_wpm|floatformat:0 }}</strong>
+    </div>
+</div>
+
+<h2>Recent Tests</h2>
+
+<div class="table-wrap">
+    <table>
+        <tr>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Errors</th>
+            <th>Date</th>
+        </tr>
+
+        {% for result in results %}
+            <tr>
+                <td>{{ result.wpm|floatformat:0 }}</td>
+                <td>{{ result.accuracy|floatformat:1 }}%</td>
+                <td>{{ result.errors }}</td>
+                <td>{{ result.created_at|date:"M d, Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4">No tests completed yet.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
