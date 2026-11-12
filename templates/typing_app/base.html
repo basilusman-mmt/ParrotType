@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ParrotType{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% include "typing_app/sidebar.html" %}
+
+    <div class="main">
+        {% include "typing_app/navbar.html" %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>ParrotType <span>•</span> Type faster. Think faster.</footer>
+    </div>
+
+    <script src="{% static 'js/typing.js' %}"></script>
+</body>
+</html>

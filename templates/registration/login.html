@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Account | ParrotType{% endblock %}
+
+{% block content %}
+
+<div class="auth-box">
+    <p class="eyebrow">PARROTTYPE ACCOUNT</p>
+
+    {% if registering %}
+        <h1>Create Account</h1>
+    {% else %}
+        <h1>Welcome Back</h1>
+    {% endif %}
+
+    <form method="POST" class="auth-form">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+
+            {% for error in field.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            <p class="error">{{ form.non_field_errors }}</p>
+        {% endif %}
+
+        <button class="primary-button" type="submit">
+            {% if registering %}Register{% else %}Login{% endif %}
+        </button>
+    </form>
+
+    {% if registering %}
+        <p class="muted">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    {% else %}
+        <p class="muted">Need an account? <a href="{% url 'register' %}">Register</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}

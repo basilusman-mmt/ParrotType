@@ -1,0 +1,11 @@
+<header class="navbar">
+    <button class="menu-button" id="menu-button">☰</button>
+    <span>Typing practice</span>
+    <span class="navbar-right">
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% else %}
+            Guest
+        {% endif %}
+    </span>
+</header>   

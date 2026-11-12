@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics | ParrotType{% endblock %}
+
+{% block content %}
+
+<p class="eyebrow">YOUR PERFORMANCE</p>
+<h1>Statistics</h1>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span>TOTAL TESTS</span>
+        <strong>{{ total_tests }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>BEST WPM</span>
+        <strong>{{ best_wpm|floatformat:0 }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>AVERAGE WPM</span>
+        <strong>{{ average_wpm }}</strong>
+    </div>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <tr>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Errors</th>
+            <th>Mode</th>
+            <th>Complexity</th>
+            <th>Date</th>
+        </tr>
+
+        {% for result in results %}
+            <tr>
+                <td>{{ result.wpm|floatformat:0 }}</td>
+                <td>{{ result.accuracy|floatformat:1 }}%</td>
+                <td>{{ result.errors }}</td>
+                <td>{{ result.mode }}</td>
+                <td>{{ result.complexity }}</td>
+                <td>{{ result.created_at|date:"M d, Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="6">No results yet.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
